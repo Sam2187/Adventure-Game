@@ -1,0 +1,32 @@
+import pyowm
+owm = pyowm.OWM('092ccf62107f41dcb15b747eb1618d0c')
+
+city = 'Jadha'
+
+loc = owm.weather_manager().weather_at_place(city)
+weather = loc.weather
+
+temp = weather.temperature(unit='celsius')
+status = weather.detailed_status
+
+cleaned_temp_data = (int(temp['temp']))
+
+print('The Temperature Today In', city, 'Is', cleaned_temp_data,'Degrees C')
+print('The day today wil have', status)
+
+if cleaned_temp_data >= 40:
+    print('Its going to be a extreamly hot one today. Drink lots of water, put sun creame on and wear a hat!')
+elif 40> cleaned_temp_data >= 30:
+    print('Its going to be hot out there today. Drink lots of water and put sun creame on!')
+elif 30> cleaned_temp_data >= 22:
+    print('Its going to be warm out there today. Bring some water and wear some shorts!')
+elif 22> cleaned_temp_data >= 16:
+    print('Its going to be pleasently warm out there today. Short sleeves for sure!')
+elif 16> cleaned_temp_data >= 10:
+    print('The temperature is going to be moderate today. Bring a jumper just to be safe!')
+elif 10> cleaned_temp_data >= 4:
+    print('Its going to be chilly out there today. Bring a coat to be safe!')
+elif 4> cleaned_temp_data >= -2:
+    print('Its going to be cold out there today. Bring a thick coat!')
+else:
+    print('Its going to be freezing out there today. Bring a thick coat an a wooly hat!')
