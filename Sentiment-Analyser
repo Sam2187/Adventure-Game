@@ -1,0 +1,41 @@
+import pandas as pd 
+pd.set_option('display.max_rows', None)
+
+      
+df = pd.DataFrame({  
+'review':[ 
+    "hello this i great",
+    "this was a bad idea",
+    "such an amazing time"
+    ]
+})  
+df 
+
+###########################################################
+
+from textblob import TextBlob
+
+def getPolarity(review):
+        return TextBlob(review).sentiment.polarity
+
+def analysis(score):
+    if score < 0:
+        return 'Negative'
+    elif score == 0:
+        return 'Neutral'
+    else:
+        return 'Positive'
+
+fin_data = pd.DataFrame(df['review'])
+
+fin_data['Polarity'] = fin_data['review'].apply(getPolarity) 
+fin_data['Analysis'] = fin_data['Polarity'].apply(analysis)
+
+###########################################################
+
+count = fin_data.Analysis.value_counts()
+count
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Securit
